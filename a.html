@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Registration Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(-45deg, #ff7b00, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 30px 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #23a6d5;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #fff;
+      background: #23a6d5;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1b7ca1;
+    }
+    .submit-btn::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 5px;
+      background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+      background-size: 400% 400%;
+      animation: glow 8s linear infinite;
+      z-index: -1;
+      opacity: 0.5;
+    }
+    @keyframes glow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <!-- Form -->
+    <form id="registrationForm">
+      <div class="form-group">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="studentName" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="studentEmail">Student Email:</label>
+        <input type="text" id="studentEmail" name="studentEmail" placeholder="Enter your email" required />
+        <div id="emailError" class="error" style="display: none;">Please enter a valid email address.</div>
+      </div>
+      <div class="form-group">
+        <label for="studentID">Student ID:</label>
+        <input type="text" id="studentID" name="studentID" placeholder="Enter your ID" required />
+      </div>
+      <div class="form-group">
+        <label for="liveClass">Live Classes:</label>
+        <select id="liveClass" name="liveClass" required>
+          <option value="">-- Select a Class --</option>
+          <option value="python">Python</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="javascript">JavaScript</option>
+          <option value="react">React</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+  <script>
+    const registrationForm = document.getElementById('registrationForm');
+    const studentEmail = document.getElementById('studentEmail');
+    const emailError = document.getElementById('emailError');
+    registrationForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(studentEmail.value)) {
+        emailError.style.display = 'block';
+        return;
+      } else {
+        emailError.style.display = 'none';
+      }
+      alert('Form submitted successfully!');
+    });
+  </script>
+</body>
+</html>
